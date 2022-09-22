@@ -1,0 +1,32 @@
+package aplicacao;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+import dominio.Pessoa;
+
+public class Programa {
+
+	public static void main(String[] args) {
+		
+		Pessoa p1 = new Pessoa(null, "Carlos da Silva", "carlos@gmail.com");
+		Pessoa p2 = new Pessoa(null, "Joaquim Torres", "joaquim@gmail.com");
+		Pessoa p3 = new Pessoa(null, "Ana maria", "ana@gmail.com");
+		
+		EntityManager emf = (EntityManager) Persistence.createEntityManagerFactory("exemplo-jpa");
+		EntityManager em = ((EntityManagerFactory) emf).createEntityManager();
+		
+		// precisa de uma transação
+		// começa
+		em.getTransaction().begin();
+		
+		// persist -> pega o Objeto e salva no banco de dados
+		em.persist(p1);
+		em.persist(p1);
+		em.persist(p3);
+ 
+		
+	}
+
+}
